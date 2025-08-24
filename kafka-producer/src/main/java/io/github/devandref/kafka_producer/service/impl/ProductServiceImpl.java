@@ -13,11 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-@Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     KafkaTemplate<String, ProductCreatedEvent> kafkaTemplate;
 
     public ProductServiceImpl(KafkaTemplate<String, ProductCreatedEvent> kafkaTemplate) {
@@ -34,8 +33,10 @@ public class ProductServiceImpl implements ProductService {
 
         log.info("--- KAFKA INFORMATION ---");
         log.info("Partition: {}", result.getRecordMetadata().partition());
+        log.info("Key: {}", result.getProducerRecord().key());
         log.info("Topic: {}", result.getRecordMetadata().topic());
         log.info("Offset: {}", result.getRecordMetadata().offset());
+        log.info("Record: {}", result.getProducerRecord().value());
         log.info("--- KAFKA INFORMATION ---");
 
         log.info("--- RETURNING PRODUCT ID {} ---", productId);
