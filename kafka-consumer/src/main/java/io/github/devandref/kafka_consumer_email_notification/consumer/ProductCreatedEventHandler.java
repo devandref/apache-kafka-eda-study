@@ -3,6 +3,8 @@ package io.github.devandref.kafka_consumer_email_notification.consumer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.devandref.kafka_consumer_email_notification.dto.ProductCreatedEventDto;
+import io.github.devandref.kafka_consumer_email_notification.exception.NoRetryableException;
+import io.github.devandref.kafka_consumer_email_notification.exception.RetryableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaHandler;
